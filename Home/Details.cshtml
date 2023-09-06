@@ -1,0 +1,38 @@
+﻿@using WebMatrix.Data
+
+@{
+    var db = Database.Open("FoodDB");
+
+    var sql = "SELECT * FROM orders as ord join deliveries as del on ord.order_id = del.delivery_order_id join drivers as dri on del.driver_id = dri.driver_id";
+
+    var output = db.Query(sql);
+
+    foreach (var x in output)
+    {
+        <p>Order ID: @x.order_id</p>
+        <p>Store ID: @x.store_id</p>
+        <p>Channel ID: @x.channel_id</p>
+        <p>Order Status: @x.order_status</p>
+        <p>Order Amount: @x.order_amount</p>
+        <p>Order Delivery Fee: @x.order_delivery_fee</p>
+        <p>Order Delivery Cost: @x.order_delivery_cost</p>
+        <p>Order Moment Created: @x.order_moment_created</p>
+        <p>Order Moment Accepted: @x.order_moment_accepted</p>
+        <p>Order Moment Ready: @x.order_moment_ready</p>
+        <p>Order Moment Collected: @x.order_moment_collected</p>
+        <p>Order Moment In Expedition: @x.order_moment_in_expedition</p>
+        <p>Order Moment Delivering: @x.order_moment_delivering</p>
+        <p>Order Moment Delivered: @x.order_moment_delivered</p>
+        <p>Order Moment Finished: @x.order_moment_finished</p>
+        <p>Order Metric Collected Time: @x.order_metric_collected_time</p>
+        <p>Order Metric Paused Time: @x.order_metric_paused_time</p>
+        <p>Order Metric Production Time: @x.order_metric_production_time</p>
+        <p>Order Metric Walking Time: @x.order_metric_walking_time</p>
+        <p>Order Metric Expedition Speed Time: @x.order_metric_expediton_speed_time</p>
+        <p>Order Metric Transit Time: @x.order_metric_transit_time</p>
+        <p>Order Metric Cycle Time: @x.order_metric_cycle_time</p>
+        <p>Driver ID: @x.driver_id</p>
+        <p>Driver Modal: @x.driver_modal</p>
+        <p>Driver Type: @x.driver_type</p>
+    }
+}
